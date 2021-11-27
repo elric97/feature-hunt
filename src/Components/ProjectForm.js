@@ -188,7 +188,7 @@ function ProjectForm() {
                   label=""
                   multiline
                   rows={1}
-                  inputProps={{ "data-testid": "form-Desc" }}
+                  inputProps={{ "data-testid": "form-country" }}
                   value={country}
                   onChange={handleLaunchCountryChange}
                   fullWidth
@@ -213,7 +213,7 @@ function ProjectForm() {
                     id="filled-adornment-amount"
                     value={funding}
                     onChange={handleFundingChange}
-                    startAdornment={<InputAdornment>$</InputAdornment>}
+                    startAdornment={<InputAdornment position={"start"}>$</InputAdornment>}
                     multiline
                     maxRows={1}
                   />

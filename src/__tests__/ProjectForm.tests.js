@@ -8,6 +8,7 @@ import "@testing-library/jest-dom/extend-expect";
 import ProjectForm from "../Components/ProjectForm";
 
 import "../setupTests";
+import {options} from "coveralls";
 
 /**
  * This file tests ProjectForm.js
@@ -73,11 +74,13 @@ describe("ProjectForm tests", () => {
     const desc = getByTestId("form-Desc");
     const img = getByTestId("form-Img");
     const tags = getByTestId("form-Tags");
+    const country = getByTestId("form-country");
 
     fireEvent.change(nuval, { target: { value: "testname" } });
     fireEvent.change(desc, { target: { value: "testDesc" } });
     fireEvent.change(img, { target: { value: "testImg" } });
     fireEvent.change(tags, { target: { value: "testTag" } });
+    fireEvent.change(country, {target: {value: "testCountry"}})
 
     const subbutton = getByTestId("submit_button");
     fireEvent.submit(subbutton);
@@ -90,6 +93,8 @@ describe("ProjectForm tests", () => {
     expect(nuImg).toBeInTheDocument();
     const nuTag = getByText(/testtag/i);
     expect(nuTag).toBeInTheDocument();
+    const nuCountry = getByText(/testcountry/i);
+    expect(nuCountry).toBeInTheDocument();
   });
 
 });
