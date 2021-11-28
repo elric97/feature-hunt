@@ -4,7 +4,7 @@ from flask import request, session, redirect
 from flask import Response
 import bcrypt
 from backend.app import app
-from backend.controller.db_init import records
+from backend.database.db_init import records
 
 #################################################################################
 ##       Function: signup

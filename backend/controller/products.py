@@ -12,7 +12,7 @@ from flask import json
 from backend.app import app
 
 from bson.json_util import dumps
-from backend.controller.db_init import product_records
+from backend.database.db_init import product_records
 
 '''
 Function: products

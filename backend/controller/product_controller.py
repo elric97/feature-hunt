@@ -3,8 +3,8 @@
 from flask import jsonify
 from flask import request
 from backend.app import app
-from db_init import product_records
-import datetime
+from backend.database.db_init import product_records
+
 
 #################################################################################
 ##       Function: add_product
