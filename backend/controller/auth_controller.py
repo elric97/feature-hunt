@@ -1,10 +1,10 @@
 # pylint: disable=wrong-import-position,pointless-string-statement,undefined-variable,line-too-long
 import json
-from flask import request, session, redirect, url_for
+from flask import request, session, redirect
 from flask import Response
 import bcrypt
-from app import app
-from db_init import records
+from backend.app import app
+from backend.controller.db_init import records
 
 #################################################################################
 ##       Function: signup

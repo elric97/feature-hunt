@@ -7,15 +7,12 @@ this file. If not, please write to: featurehuntteam@gmail.com
 
 # pylint: disable=wrong-import-position,poiackend-lontless-string-statement,undefined-variable,line-too-long
 
-import os
-from sys import stderr
 from flask import request, jsonify, Response
 from flask import json
-from app import app
+from backend.app import app
 
 from bson.json_util import dumps
-from bson.objectid import ObjectId
-from db_init import product_records
+from backend.controller.db_init import product_records
 
 '''
 Function: products

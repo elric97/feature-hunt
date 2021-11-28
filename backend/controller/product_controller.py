@@ -2,7 +2,7 @@
 
 from flask import jsonify
 from flask import request
-from app import app
+from backend.app import app
 from db_init import product_records
 import datetime
 
