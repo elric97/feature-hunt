@@ -6,11 +6,11 @@ from flask import Flask
 from flask_cors import CORS
 
 app = Flask(__name__)
-from controller.auth_controller import *
-from controller.products import *
-from controller.product_controller import *
-from database.db_init import db
-from controller.ping_controller import *
+from backend.controller.auth_controller import *
+from backend.controller.products import *
+from backend.controller.product_controller import *
+from backend.database.db_init import db
+from backend.controller.ping_controller import *
 
 app.secret_key = "testing"
 CORS(app)

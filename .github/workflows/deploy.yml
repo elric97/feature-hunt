@@ -16,4 +16,3 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "feature-hunt-automated" #Must be unique in Heroku
           heroku_email: "sharma.rachit882@gmail.com"
-          appdir: "backend"
