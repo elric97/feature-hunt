@@ -42,7 +42,6 @@ const ProjectTile = ({ products, index, setProducts }) => {
   };
 
   const deleteDiv = (event) => {
-    console.log(event.target.parentNode.parentNode.parentNode);
     const product = event.target.parentNode.parentNode.parentNode;
     product.parentNode.removeChild(product);
 
