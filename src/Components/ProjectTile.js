@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
+import Button from '@mui/material/Button';
+
 
 //
 //       Component: ProductTile
@@ -10,7 +12,7 @@ import { useHistory } from 'react-router';
 //           - NA
 //       Outputs:
 //          - NA
-const ProductTile = ({ products, index, setProducts }) => {
+const ProjectTile = ({ products, index, setProducts }) => {
   const history = useHistory();
   const upVote = () => {
     const updatedProduct = { ...products[index] };
@@ -82,9 +84,13 @@ const ProductTile = ({ products, index, setProducts }) => {
             onClick={downVote} />
           </span>
         </div>
+        <br/>
+        <div className="delete_project" style={{marginLeft:'25px'}}>
+          <Button variant="text" style={{color:'#218888'}}>Delete</Button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProductTile;
+export default ProjectTile;
