@@ -7,6 +7,7 @@ import Service from "../Service";
 import FilledInput from '@mui/material/FilledInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
+import { useHistory } from "react-router-dom";
 
 const Styles = styled.div`
  background: #218888;
@@ -94,6 +95,12 @@ function ProjectForm() {
   const [country, setCountry] = React.useState("");
   const [funding, setFunding] = React.useState("");
 
+  const history=useHistory();
+
+  const handleRoute = () =>{ 
+    history.push("/dashboard");
+  }
+
   React.useEffect(() => {
     setUser(ReactSession.get("username"));
   }, []);
@@ -141,7 +148,7 @@ function ProjectForm() {
           }
         }).catch(function(err){
           setMessage("There was a problem submitting your product. Please try again later.")
-      });
+      });    
    }
 
   return (
@@ -232,7 +239,7 @@ function ProjectForm() {
                   fullWidth
                 />
             <br /><br />
-            <Button variant="contained" size="large" data-testid="submit_button" onClick={handleSubmit} >
+            <Button variant="contained" size="large" data-testid="submit_button" onClick={()=>{handleSubmit();handleRoute()}} >
             Submit
           </Button>
             {/* <button data-testid="submit_button" onClick={handleSubmit}>Submit</button> */}
