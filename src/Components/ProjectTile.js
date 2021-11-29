@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router';
 import Button from '@mui/material/Button';
+import React, { useEffect, useRef } from 'react';
 
 
 //
@@ -13,6 +14,7 @@ import Button from '@mui/material/Button';
 //       Outputs:
 //          - NA
 const ProjectTile = ({ products, index, setProducts }) => {
+
   const history = useHistory();
   const upVote = () => {
     const updatedProduct = { ...products[index] };
@@ -38,7 +40,13 @@ const ProjectTile = ({ products, index, setProducts }) => {
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
-  
+
+  const deleteDiv = (event) => {
+    console.log(event.target.parentNode.parentNode.parentNode);
+    const product = event.target.parentNode.parentNode.parentNode;
+    product.parentNode.removeChild(product);
+
+  };
   return (
     <div className="child product">
       <div className="product-container">
@@ -85,8 +93,9 @@ const ProjectTile = ({ products, index, setProducts }) => {
           </span>
         </div>
         <br/>
-        <div className="delete_project" style={{marginLeft:'25px'}}>
-          <Button variant="text" style={{color:'#218888'}}>Delete</Button>
+        <div id ="delete_button" className="delete_project" style={{marginLeft:'25px'}}>
+          <Button variant="text" style={{color:'#218888'}}
+          onClick={deleteDiv}>Delete</Button>
         </div>
       </div>
     </div>
