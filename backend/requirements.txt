@@ -31,3 +31,5 @@ Werkzeug==2.0.1
 bcrypt==3.2.0
 waitress==2.0.0
 gunicorn
+boto3
+botocore
