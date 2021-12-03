@@ -15,8 +15,6 @@ from app import app
 
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-
-from product_controller import s3
 from db_init import product_records
 
 '''
@@ -33,37 +31,30 @@ Outputs:
 def products():
     if request.method == 'GET':
         data = product_records.find(
-            {"$or" :
+            {"$or" : 
                 [{
-                    "name" :
-                    {
+                    "name" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                },  
+                {
+                    "description" : 
+                    { 
                         "$regex" : request.args.get("query"),
                         '$options' : 'i'
                     }
                 },
                 {
-                    "description" :
-                    {
-                        "$regex" : request.args.get("query"),
-                        '$options' : 'i'
-                    }
-                },
-                {
-                    "tags" :
-                    {
+                    "tags" : 
+                    { 
                         "$regex" : request.args.get("query"),
                         '$options' : 'i'
                     }
                 }]
             })
-        iterate = []
-        for obj in data:
-            if obj["image_url"] is None and obj["file_name"] is not None:
-                url = get_pre_signed(obj["file_name"])
-                obj["image_url"] = url
-            iterate.append(obj)
-
-        return dumps(iterate)
+        return dumps(data)
 
     data = request.get_json()
 
@@ -96,13 +87,6 @@ def products():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
 
-def get_pre_signed(file_name):
-    response = s3.generate_presigned_url('get_object',
-                                         Params={'Bucket': "feature-hunt", 'Key': file_name},
-                                         ExpiresIn=500)
-    return response
-
-
 '''
 Function: get_feature
 Description: Get the list of all features for given product name
@@ -113,10 +97,10 @@ Outputs:
 '''
 
 
-@app.route('/<product_name>/getFeature', methods=['GET', 'POST'])
+@app.route('/<productname>/getFeature', methods=['GET', 'POST'])
 def get_feature(product_name):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name}, {"features": 1})
+        data = product_records.find({"name": product_name},{"features":1})
         return dumps(data)
 
 
@@ -130,7 +114,7 @@ Outputs:
 '''
 
 
-@app.route('/<product_name>/features', methods=['GET', 'POST'])
+@app.route('/<productname>/features', methods=['GET', 'POST'])
 def features(product_name):
     result = ''
     if request.method == 'POST':
@@ -141,7 +125,7 @@ def features(product_name):
             return Response(response=json.dumps({"Error": "Please provide connection information"}),
                             status=400,
                             mimetype='application/json')
-        result = product_records.find_one_and_update({"name": product_name}, {"$push": {"features": data}})
+        result = product_records.find_one_and_update({"name": product_name}, {"$set": {"features": data}})
 
     elif request.method == 'GET':
         result = product_records.find({"name": product_name}, {"features": 1})

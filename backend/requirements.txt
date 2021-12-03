@@ -29,6 +29,5 @@ toml==0.10.2
 urllib3==1.21.1
 Werkzeug==2.0.1
 bcrypt==3.2.0
-boto
 waitress==2.0.0
 gunicorn

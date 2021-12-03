@@ -33,10 +33,6 @@ const Product = ({query}) => {
         timestamp: Date.now(),
         tags: ['enhancement'],
       };
-      const form = new FormData();
-      form.append("features", JSON.stringify(addedFeature));
-      Service.post('/'+id+'/features', form)
-        .then(data => {});
       setFeatures(features.concat(addedFeature));
       setNewFeature('');
     }
